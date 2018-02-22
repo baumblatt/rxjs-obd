@@ -4,7 +4,6 @@ import {empty} from 'rxjs/observable/empty';
 import {OBDConnection} from './OBDConnection';
 
 export class NodeOBDConnection implements OBDConnection {
-
 	/**
 	 * Wrapped net.Socket instance.
 	 */
