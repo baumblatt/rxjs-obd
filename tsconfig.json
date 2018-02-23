@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"declaration": true,
 		"removeComments": false,
 		"preserveConstEnums": true,
 		"sourceMap": true,
@@ -12,7 +13,7 @@
 		"typeRoots": [
 			"node_modules/@types"
 		],
-		"outDir": "./.out",
+		"outDir": "dist",
 		"baseUrl": "src",
 		"lib": [
 			"es5",
@@ -28,7 +29,6 @@
 	},
 	"include": [
 		"src/**/*.ts",
-		"node_modules/@types",
-		"node_modules/obd-parser/lib/*.d.ts"
+		"node_modules/@types"
 	]
 }
