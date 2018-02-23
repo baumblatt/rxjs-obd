@@ -7,19 +7,19 @@ import {OBDData} from '../model/OBDData';
 import {OBDEvent} from '../model/OBDEvent';
 
 
-export function pluckODBData(): OperatorFunction<OBDEvent, OBDData> {
+export function pluckOBDData(): OperatorFunction<OBDEvent, OBDData> {
 	return function (source: Observable<OBDEvent>): Observable<OBDData> {
-		return source.lift(new PluckODBDataOperator());
+		return source.lift(new PluckOBDDataOperator());
 	}
 }
 
-class PluckODBDataOperator implements Operator<OBDEvent, OBDData> {
+class PluckOBDDataOperator implements Operator<OBDEvent, OBDData> {
 	call(subscriber: Subscriber<OBDData>, source: Observable<OBDEvent>): TeardownLogic {
-		return source.subscribe(new PluckODBDataSubscriber(subscriber));
+		return source.subscribe(new PluckOBDDataSubscriber(subscriber));
 	}
 }
 
-class PluckODBDataSubscriber extends Subscriber<OBDEvent> {
+class PluckOBDDataSubscriber extends Subscriber<OBDEvent> {
 	constructor(destination: Subscriber<OBDData>) {
 		super(destination);
 	}
