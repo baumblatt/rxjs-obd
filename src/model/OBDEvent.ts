@@ -37,7 +37,7 @@ export class OBDEvent {
 	 * @param {number | string} value the new value of field.
 	 */
 	update(name: string, value: number | string) {
-		const field = fromFields[name];
+		const field = fromFields[name.toUpperCase()];
 		const formatted = `${value} ${field.unit}`;
 
 		this._data[name] = {
