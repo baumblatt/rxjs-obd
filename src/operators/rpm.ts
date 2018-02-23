@@ -5,8 +5,6 @@ import {TeardownLogic} from 'rxjs/Subscription';
 import {OBDEvent} from '../model/OBDEvent';
 import {OBDOuterSubscriber} from '../model/OBDOuterSubscriber';
 
-const RPM_COMMAND = '010C\r';
-
 export function rpm() {
 	return function (source: Observable<OBDEvent>): Observable<OBDEvent> {
 		return source.lift(new RPMOperator());
@@ -30,7 +28,7 @@ class RPMSubscriber extends OBDOuterSubscriber {
 	 * @returns {string} the string representation of the OBD Read command
 	 */
 	command(): string {
-		return RPM_COMMAND;
+		return '010C\r';
 	}
 
 	/**

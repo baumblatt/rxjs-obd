@@ -5,8 +5,6 @@ import {TeardownLogic} from 'rxjs/Subscription';
 import {OBDEvent} from '../model/OBDEvent';
 import {OBDOuterSubscriber} from '../model/OBDOuterSubscriber';
 
-const VEHICLE_SPEED_COMMAND = '010D\r';
-
 export function vehicleSpeed() {
 	return function (source: Observable<OBDEvent>): Observable<OBDEvent> {
 		return source.lift(new VehicleSpeedOperator());
@@ -30,7 +28,7 @@ class VehicleSpeedSubscriber extends OBDOuterSubscriber {
 	 * @returns {string} the string representation of the OBD Read command
 	 */
 	command(): string {
-		return VEHICLE_SPEED_COMMAND;
+		return '010D\r';
 	}
 
 	/**
