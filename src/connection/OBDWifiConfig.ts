@@ -23,7 +23,7 @@ export class DummyOBDConnection extends OBDConnection {
 	}
 
 	onData(): Observable<string> {
-		return of('dummy');
+		return of('dummy connection, you must config an OBDConnection\r>');
 	}
 
 	close(): Observable<any> {
