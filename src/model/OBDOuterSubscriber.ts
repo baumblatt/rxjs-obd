@@ -57,13 +57,13 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 				mergeMap((data: string) => from(data.split(OBD_OUTPUT_DELIMITER))),
 				obdReader(),
 				take(1),
-				map((result) => this.parse(result)),
+				map((result: string[]) => this.parse(result)),
 		).subscribe(
 				(value: number | string) => {
 					event.update(this.field(), value);
 					this.destination.next(event);
 				},
-				(error) => this.destination.error(error)
+				(error: any) => this.destination.error(error)
 		);
 	}
 }
