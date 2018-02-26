@@ -1,7 +1,7 @@
-import {Subscriber} from 'rxjs';
 import {from} from 'rxjs/observable/from';
 import {map, mergeMap, take} from 'rxjs/operators';
 import {OuterSubscriber} from 'rxjs/OuterSubscriber';
+import {Subscriber} from 'rxjs/Subscriber';
 import {obdReader} from '../operators/obdReader';
 import {OBDEvent} from './OBDEvent';
 

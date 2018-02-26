@@ -1,6 +1,7 @@
-import {Observable, Subscriber, Subscription} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {interval} from 'rxjs/observable/interval';
-import {TeardownLogic} from 'rxjs/Subscription';
+import {Subscriber} from 'rxjs/Subscriber';
+import {Subscription, TeardownLogic} from 'rxjs/Subscription';
 import {OBDConnection} from '../connection/OBDConnection';
 import {defaultOBDWifiConfig, OBDWifiConfig} from '../connection/OBDWifiConfig';
 import {OBDData} from '../model/OBDData';

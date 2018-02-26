@@ -1,6 +1,7 @@
 import * as net from 'net';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {empty} from 'rxjs/observable/empty';
+import {Subject} from 'rxjs/Subject';
 import {OBDConnection} from './OBDConnection';
 
 /**
