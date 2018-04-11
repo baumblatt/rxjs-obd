@@ -50,7 +50,7 @@ export class FromOBDWifiObservable extends Observable<OBDEvent> {
 		}
 	}
 
-	protected _subscribe(subscriber: Subscriber<OBDEvent>): TeardownLogic {
+	_subscribe(subscriber: Subscriber<OBDEvent>): TeardownLogic {
 		let unsubscribe: () => void;
 
 		const {host, port, pullingInterval, connection} = this.config;
