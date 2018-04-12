@@ -22,10 +22,6 @@
     "url": "https://github.com/baumblatt/rxjs-obd/issues"
   },
   "homepage": "https://github.com/baumblatt/rxjs-obd#readme",
-  "files": [
-    "dist",
-    "src"
-  ],
   "dependencies": {
     "rxjs": "^5.5.9"
   },
