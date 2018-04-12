@@ -1,13 +1,13 @@
 /* tslint:disable:no-unused-variable */
 
 // Connections
-export * from 'connection';
+export * from './connection';
 
 // Models
-export * from 'model';
+export * from './model';
 
 // Observables
-export {fromOBDWifi} from 'observables/fromOBDWifi'
+export {fromOBDWifi} from './observables/fromOBDWifi'
 
 // Operators
-export * from 'operators';
+export * from './operators';
