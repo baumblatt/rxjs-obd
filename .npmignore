@@ -1,4 +1,5 @@
 .idea
 src
 node_modules
+ng-package.json
 tsconfig.json
