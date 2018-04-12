@@ -26,7 +26,6 @@ class OBDReaderSubscriber extends Subscriber<string> {
 
 	/**
 	 * Internal buffer of bytes received from OBD.
-	 * @type {string[]}
 	 */
 	memento: string[] = [];
 
@@ -66,8 +65,8 @@ class OBDReaderSubscriber extends Subscriber<string> {
 	/**
 	 * Determines if the passed buffer/string has a prompt.
 	 * that indicates it has been completed.
-	 * @param   {String} data the returned data.
-	 * @return  {Boolean} flag indicating if the data has a prompt.
+	 * @param   data the returned data.
+	 * @return  flag indicating if the data has a prompt.
 	 */
 	static hasPrompt(data: string) {
 		// Basically, we check that the a newline has started
@@ -76,9 +75,9 @@ class OBDReaderSubscriber extends Subscriber<string> {
 
 	/**
 	 * Determines if the passed buffer is an output of desired mode.
-	 * @param {string[]} bytes the buffer returned by OBD
-	 * @param {OBD_OUTPUT_MESSAGE_TYPES} mode the desired mode.
-	 * @returns {(string[] | number) | boolean} Flag indicating that is a valid result.
+	 * @param bytes the buffer returned by OBD
+	 * @param mode the desired mode.
+	 * @returns Flag indicating that is a valid result.
 	 */
 	static isOutput(bytes: string[], mode: OBD_OUTPUT_MESSAGE_TYPES) {
 		return bytes && bytes.length && bytes[0] === mode;
@@ -86,8 +85,8 @@ class OBDReaderSubscriber extends Subscriber<string> {
 
 	/**
 	 * Convert the returned bytes into their pairs if possible, or return null.
-	 * @param  {String} str the returned bytes.
-	 * @return {Array|null} the returned bytes into their pairs if possible, or return null.
+	 * @param  str the returned bytes.
+	 * @return the returned bytes into their pairs if possible, or return null.
 	 */
 	static getByteGroupings(str: string): Array<string> | null {
 		// Remove white space (if any exists) and get byte groups as pairs

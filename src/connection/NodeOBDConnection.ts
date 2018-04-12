@@ -20,7 +20,7 @@ export class NodeOBDConnection implements OBDConnection {
 
 	/**
 	 * Open connection to OBD Reader.
-	 * @returns {Observable<any>} the observable of opening connection.
+	 * @returns the observable of opening connection.
 	 */
 	open(config: { port: number, host: string }): Observable<any> {
 		const {port, host} = config;
@@ -40,7 +40,7 @@ export class NodeOBDConnection implements OBDConnection {
 
 	/**
 	 * Send a command to OBD Reader.
-	 * @returns {Observable<any>} the observable of send operation.
+	 * @returns the observable of send operation.
 	 * The events emitted are ignored, wait for complete (successful) or error (failure).
 	 */
 	send(command: string): Observable<any> {
@@ -50,7 +50,7 @@ export class NodeOBDConnection implements OBDConnection {
 
 	/**
 	 * Listener for data received from OBD Reader.
-	 * @returns {Observable<string>} Observable of data received from OBD Reader.
+	 * @returns Observable of data received from OBD Reader.
 	 */
 	onData(): Observable<string> {
 		return this.data$.asObservable();
@@ -58,7 +58,7 @@ export class NodeOBDConnection implements OBDConnection {
 
 	/**
 	 * Close and dispose resources of OBD Reader connection.
-	 * @returns {Observable<any>} the observable of close operation.
+	 * @returns the observable of close operation.
 	 * The events emitted are ignored, wait for complete (successful) or error (failure).
 	 */
 	close(): Observable<any> {

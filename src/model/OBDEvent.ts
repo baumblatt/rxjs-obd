@@ -21,10 +21,10 @@ export class OBDEvent {
 	/**
 	 * Constructor for OBD Events, only rxjs-obd observables should use it.
 	 *
-	 * @param {number} id The event identifier.
-	 * @param {OBDConnection} connection The connection to ELM 327 OBD Reader.
-	 * @param {Function} _done The done function to be called only by pluckODBData from rxjs-obd.
-	 * @param {OBDData} _data The previous ODB data (Optional).
+	 * @param id The event identifier.
+	 * @param connection The connection to ELM 327 OBD Reader.
+	 * @param _done The done function to be called only by pluckODBData from rxjs-obd.
+	 * @param _data The previous ODB data (Optional).
 	 */
 	constructor(id: number, connection: OBDConnection, private _done: Function, private _data = new OBDData()) {
 		this._id = id;
@@ -33,8 +33,8 @@ export class OBDEvent {
 
 	/**
 	 * Update a field of the public OBD Data.
-	 * @param {string} name The field name.
-	 * @param {number | string} value the new value of field.
+	 * @param name The field name.
+	 * @param value the new value of field.
 	 */
 	update(name: string, value: number | string) {
 		const field = fromFields[name.toUpperCase()];
@@ -56,7 +56,7 @@ export class OBDEvent {
 
 	/**
 	 * Return the event id.
-	 * @returns {number} the event id.
+	 * @returns the event id.
 	 */
 	get id(): number {
 		return this._id;
@@ -64,7 +64,7 @@ export class OBDEvent {
 
 	/**
 	 * Return the internal connection connection to be used by rxjs-obd operators only.
-	 * @returns {OBDConnection} The connection connection to ELM 327 OBD Reader.
+	 * @returns The connection connection to ELM 327 OBD Reader.
 	 */
 	get connection(): OBDConnection {
 		return this._connection;
@@ -72,7 +72,7 @@ export class OBDEvent {
 
 	/**
 	 * Return the public data of the rxjs-obd observables.
-	 * @returns {OBDData} The public data.
+	 * @returns The public data.
 	 */
 	get data(): OBDData {
 		return this._data;

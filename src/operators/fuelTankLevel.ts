@@ -25,7 +25,7 @@ class FuelTankLevelSubscriber extends OBDOuterSubscriber {
 
 	/**
 	 * Return the string representation of the OBD Read command.
-	 * @returns {string} the string representation of the OBD Read command
+	 * @returns the string representation of the OBD Read command
 	 */
 	command(): string {
 		return '012F\r';
@@ -33,7 +33,7 @@ class FuelTankLevelSubscriber extends OBDOuterSubscriber {
 
 	/**
 	 * Return the name of the OBD Field on OBD Data object.
-	 * @returns {string} the name of the OBD Field on OBD Data object.
+	 * @returns the name of the OBD Field on OBD Data object.
 	 */
 	field(): string {
 		return 'fuelTankLevel';
@@ -41,8 +41,8 @@ class FuelTankLevelSubscriber extends OBDOuterSubscriber {
 
 	/**
 	 * Parse the OBD response.
-	 * @param {string[]} bytes the response read from OBD.
-	 * @returns {number | string} the parsed response.
+	 * @param bytes the response read from OBD.
+	 * @returns the parsed response.
 	 */
 	parse(bytes: string[]): number | string {
 		return parseInt(bytes[2], 16) * 100 / 255;

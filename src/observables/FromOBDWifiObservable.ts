@@ -26,8 +26,8 @@ export class FromOBDWifiObservable extends Observable<OBDEvent> {
 
 	/**
 	 * Static constructor to be exported in the rxjs-obd.
-	 * @param {OBDWifiConfig} config
-	 * @returns {Observable<OBDEvent>} The observable of OBDEvents.
+	 * @param config
+	 * @returns The observable of OBDEvents.
 	 */
 	static createWifi(config = defaultOBDWifiConfig): Observable<OBDEvent> {
 		return new FromOBDWifiObservable(config);

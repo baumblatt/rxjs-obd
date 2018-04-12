@@ -51,7 +51,7 @@ export class CordovaOBDConnection extends OBDConnection {
 
 	/**
 	 * Open connection to OBD Reader.
-	 * @returns {Observable<any>} the observable of opening connection.
+	 * @returns the observable of opening connection.
 	 */
 	open(config: any): Observable<any> {
 		const {port, host} = config;
@@ -76,7 +76,7 @@ export class CordovaOBDConnection extends OBDConnection {
 
 	/**
 	 * Send a command to OBD Reader.
-	 * @returns {Observable<any>} the observable of send operation.
+	 * @returns the observable of send operation.
 	 * The events emitted are ignored, wait for complete (successful) or error (failure).
 	 */
 	send(command: string): Observable<any> {
@@ -92,7 +92,7 @@ export class CordovaOBDConnection extends OBDConnection {
 
 	/**
 	 * Listener for data received from OBD Reader.
-	 * @returns {Observable<string>} Observable of data received from OBD Reader.
+	 * @returns Observable of data received from OBD Reader.
 	 */
 	onData(): Observable<string> {
 		return this.data$.asObservable();
@@ -100,7 +100,7 @@ export class CordovaOBDConnection extends OBDConnection {
 
 	/**
 	 * Close and dispose resources of OBD Reader connection.
-	 * @returns {Observable<any>} the observable of close operation.
+	 * @returns the observable of close operation.
 	 * The events emitted are ignored, wait for complete (successful) or error (failure).
 	 */
 	close(): Observable<any> {
@@ -111,8 +111,8 @@ export class CordovaOBDConnection extends OBDConnection {
 
 	/**
 	 * Marshall the string data into bytes array.
-	 * @param {string} data the string data.
-	 * @returns {Uint8Array} the bytes array.
+	 * @param data the string data.
+	 * @returns the bytes array.
 	 */
 	static marshall(data: string): Uint8Array {
 		if (!data) {
@@ -130,8 +130,8 @@ export class CordovaOBDConnection extends OBDConnection {
 
 	/**
 	 * Unmarshall the bytes array into data string.
-	 * @param {Uint8Array} bytes the bytes array.
-	 * @returns {string} the string data.
+	 * @param bytes the bytes array.
+	 * @returns the string data.
 	 */
 	static unmarshall(bytes: Uint8Array): string {
 		return String.fromCharCode.apply(null, bytes);
