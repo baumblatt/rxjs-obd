@@ -1,12 +1,12 @@
 {
 	"$schema": "./node_modules/ng-packagr/ng-package.schema.json",
 	"lib": {
-		"entryFile": "src/public_api.ts",
+		"entryFile": "./src/public_api.ts",
 		"externals": {
-			"connection/CordovaOBDConnection": "rxjs-obd/CordovaOBDConnection"
+
 		}
 	},
 	"whitelistedNonPeerDependencies": [
-		"rxjs"
+		"net"
 	]
 }

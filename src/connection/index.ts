@@ -2,4 +2,4 @@
 export {CordovaOBDConnection} from './CordovaOBDConnection';
 export {NodeOBDConnection} from './NodeOBDConnection';
 export {OBDConnection} from './OBDConnection';
-export {OBDWifiConfig} from './OBDWifiConfig';
+export {OBDWifiConfig, defaultOBDWifiConfig} from './OBDWifiConfig';
