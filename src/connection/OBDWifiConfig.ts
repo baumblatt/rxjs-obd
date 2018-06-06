@@ -1,6 +1,4 @@
-import {Observable} from 'rxjs/Observable';
-import {empty} from 'rxjs/observable/empty';
-import {of} from 'rxjs/observable/of';
+import {EMPTY, Observable, of} from 'rxjs';
 import {OBDConnection} from './OBDConnection';
 
 export interface OBDWifiConfig {
@@ -14,12 +12,12 @@ export class DummyOBDConnection extends OBDConnection {
 
 	open(config: any): Observable<any> {
 		console.log('DummyOBDConnection.open');
-		return empty();
+		return EMPTY;
 	}
 
 	send(): Observable<any> {
 		console.log('DummyOBDConnection.send');
-		return empty();
+		return EMPTY;
 	}
 
 	onData(): Observable<string> {
@@ -28,7 +26,7 @@ export class DummyOBDConnection extends OBDConnection {
 
 	close(): Observable<any> {
 		console.log('DummyOBDConnection.close');
-		return empty();
+		return EMPTY;
 	}
 }
 

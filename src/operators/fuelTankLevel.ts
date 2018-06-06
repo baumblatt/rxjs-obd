@@ -1,7 +1,4 @@
-import {Observable} from 'rxjs/Observable';
-import {Operator} from 'rxjs/Operator';
-import {Subscriber} from 'rxjs/Subscriber';
-import {TeardownLogic} from 'rxjs/Subscription';
+import {Observable, Operator, Subscriber, TeardownLogic} from 'rxjs';
 import {OBDEvent} from '../model/OBDEvent';
 import {OBDOuterSubscriber} from '../model/OBDOuterSubscriber';
 

@@ -1,6 +1,4 @@
-import {Observable} from 'rxjs/Observable';
-import {empty} from 'rxjs/observable/empty';
-import {Subject} from 'rxjs/Rx';
+import {EMPTY, Observable, Subject} from 'rxjs';
 import {OBDConnection} from './OBDConnection';
 
 /**
@@ -106,7 +104,7 @@ export class CordovaOBDConnection extends OBDConnection {
 	close(): Observable<any> {
 		this.socket.shutdownWrite();
 		setTimeout(this.socket.close());
-		return empty();
+		return EMPTY;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 .idea
 src
 node_modules
-ng-package.json
+index.ts
 tsconfig.json

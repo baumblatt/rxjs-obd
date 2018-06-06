@@ -1,6 +1,6 @@
 {
   "name": "rxjs-obd",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "RxJS Implementation for OBD (On Board Diagnostics) of vehicles via ELM 327 connections.",
   "repository": {
     "type": "git",
@@ -16,24 +16,21 @@
     "RxJS",
     "ELM327"
   ],
+  "main": "dist/public_api.js",
+  "types": "dist/public_api.d.ts",
   "author": "Bernardo Baumblatt",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/baumblatt/rxjs-obd/issues"
   },
   "homepage": "https://github.com/baumblatt/rxjs-obd#readme",
-  "dependencies": {},
-  "peerDependencies": {
-    "rxjs": "^5.5.9"
+  "dependencies": {
+    "rxjs": "^6.2.0"
   },
   "devDependencies": {
-    "@angular/compiler": "^5.2.9",
-    "@angular/compiler-cli": "^5.2.9",
-    "@angular/core": "^5.2.9",
     "@types/node": "^9.4.6",
     "injection-js": "^2.2.1",
-    "moment": "^2.22.0",
-    "ng-packagr": "^2.4.2",
+    "moment": "^2.22.2",
     "sockets-for-cordova": "^1.0.0",
     "typescript": "^2.7.2"
   }

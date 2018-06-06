@@ -1,9 +1,5 @@
-import {OperatorFunction} from 'rxjs/interfaces';
-import {Observable} from 'rxjs/Observable';
-import {Operator} from 'rxjs/Operator';
-import {Subscriber} from 'rxjs/Subscriber';
-import {TeardownLogic} from 'rxjs/Subscription';
-import {OBDData} from '../model/OBDData';
+import {Observable, Operator, OperatorFunction, Subscriber, TeardownLogic} from 'rxjs';
+import {OBDData} from '../model';
 import {OBDEvent} from '../model/OBDEvent';
 
 

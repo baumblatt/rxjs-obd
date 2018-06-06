@@ -1,7 +1,5 @@
 import * as net from 'net';
-import {Observable} from 'rxjs/Observable';
-import {empty} from 'rxjs/observable/empty';
-import {Subject} from 'rxjs/Subject';
+import {Observable, Subject, EMPTY} from 'rxjs';
 import {OBDConnection} from './OBDConnection';
 
 /**
@@ -45,7 +43,7 @@ export class NodeOBDConnection implements OBDConnection {
 	 */
 	send(command: string): Observable<any> {
 		this.socket.write(command);
-		return empty();
+		return EMPTY;
 	}
 
 	/**
@@ -65,7 +63,7 @@ export class NodeOBDConnection implements OBDConnection {
 		this.data$.complete();
 		this.socket.end();
 		this.socket.destroy();
-		return empty();
+		return EMPTY;
 	}
 
 }
