@@ -1,5 +1,6 @@
 // Public Connections
-//export {CordovaOBDConnection} from './CordovaOBDConnection';
-//export {NodeOBDConnection} from './NodeOBDConnection';
+export {CordovaOBDConnection} from './CordovaOBDConnection';
+export {BluetoothOBDConnection} from './BluetoothOBDConnection';
+// export {NodeOBDConnection} from './NodeOBDConnection';
 export {OBDConnection} from './OBDConnection';
-export {OBDWifiConfig, defaultOBDWifiConfig} from './OBDWifiConfig';
+export {OBDConfig, defaultOBDWifiConfig} from './OBDConfig';

@@ -1,9 +1,9 @@
 import {interval, Observable, Subscriber, Subscription, TeardownLogic} from 'rxjs';
-import {defaultOBDWifiConfig, OBDConnection, OBDWifiConfig} from '../connection';
-import {OBDData} from '../model/OBDData';
+import {defaultOBDWifiConfig, OBDConfig, OBDConnection} from '../connection';
+import {OBDData} from '../model';
 import {OBDEvent} from '../model/OBDEvent';
 
-export class FromOBDWifiObservable extends Observable<OBDEvent> {
+export class FromOBDObservable extends Observable<OBDEvent> {
 
 	/**
 	 * The connection connection to ELM 327 OBD Reader.
@@ -25,11 +25,11 @@ export class FromOBDWifiObservable extends Observable<OBDEvent> {
 	 * @param config
 	 * @returns The observable of OBDEvents.
 	 */
-	static createWifi(config = defaultOBDWifiConfig): Observable<OBDEvent> {
-		return new FromOBDWifiObservable(config);
+	static create(config = defaultOBDWifiConfig): Observable<OBDEvent> {
+		return new FromOBDObservable(config);
 	}
 
-	constructor(private config?: OBDWifiConfig) {
+	constructor(private config?: OBDConfig) {
 		super();
 	}
 
@@ -49,10 +49,10 @@ export class FromOBDWifiObservable extends Observable<OBDEvent> {
 	_subscribe(subscriber: Subscriber<OBDEvent>): TeardownLogic {
 		let unsubscribe: () => void;
 
-		const {host, port, pullingInterval, connection} = this.config;
+		const {pullingInterval, connection} = this.config;
 		this.connection = connection;
 
-		this.connection.open({host, port}).subscribe({
+		this.connection.open(this.config).subscribe({
 			error: (error) => subscriber.error(error),
 			complete: () => {
 				// connected

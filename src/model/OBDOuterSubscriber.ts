@@ -3,6 +3,7 @@ import {map, mergeMap, take} from 'rxjs/operators';
 import {OuterSubscriber} from '../internal/OuterSubscriber';
 import {obdReader} from '../operators/obdReader';
 import {OBDEvent} from './OBDEvent';
+import {tap} from "rxjs/internal/operators/tap";
 
 const OBD_OUTPUT_DELIMITER = '\r';
 
@@ -52,16 +53,17 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 	 */
 	read(event: OBDEvent) {
 		event.connection.onData().pipe(
-				mergeMap((data: string) => from(data.split(OBD_OUTPUT_DELIMITER))),
-				obdReader(),
-				take(1),
-				map((result: string[]) => this.parse(result)),
+			tap(data => console.log('data', data)),
+			mergeMap((data: string) => from(data.split(OBD_OUTPUT_DELIMITER))),
+			obdReader(),
+			take(1),
+			map((result: string[]) => this.parse(result)),
 		).subscribe(
-				(value: number | string) => {
-					event.update(this.field(), value);
-					this.destination.next(event);
-				},
-				(error: any) => this.destination.error(error)
+			(value: number | string) => {
+				event.update(this.field(), value);
+				this.destination.next(event);
+			},
+			(error: any) => this.destination.error(error)
 		);
 	}
 }

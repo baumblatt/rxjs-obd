@@ -38,13 +38,11 @@ export class OBDEvent {
 	 */
 	update(name: string, value: number | string) {
 		const field = fromFields[name.toUpperCase()];
-		const formatted = `${value} ${field.unit}`;
+		const formatted = field.formatter ? field.formatter(field.unit, value) : `${value} ${field.unit}`;
 
-		this._data[name] = {
-			...field,
-			value,
-			formatted
-		}
+		const {label, unit} = field;
+
+		this._data[name] = {label, unit, value, formatted};
 	}
 
 	/**

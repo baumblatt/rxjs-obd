@@ -1,5 +1,5 @@
 import * as net from 'net';
-import {Observable, Subject, EMPTY} from 'rxjs';
+import {EMPTY, Observable, Subject} from 'rxjs';
 import {OBDConnection} from './OBDConnection';
 
 /**
@@ -20,7 +20,7 @@ export class NodeOBDConnection implements OBDConnection {
 	 * Open connection to OBD Reader.
 	 * @returns the observable of opening connection.
 	 */
-	open(config: { port: number, host: string }): Observable<any> {
+	open(config: { host: string, port: number }): Observable<any> {
 		const {port, host} = config;
 		const subject = new Subject();
 

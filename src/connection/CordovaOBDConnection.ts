@@ -51,22 +51,22 @@ export class CordovaOBDConnection extends OBDConnection {
 	 * Open connection to OBD Reader.
 	 * @returns the observable of opening connection.
 	 */
-	open(config: any): Observable<any> {
+	open(config: { host: string, port: number }): Observable<any> {
 		const {port, host} = config;
 		const subject = new Subject();
 
 		this.socket = new Socket();
 		this.socket.open(host, port,
-				() => {
-					this.data$ = new Subject<string>();
+			() => {
+				this.data$ = new Subject<string>();
 
-					this.socket.onData = (data: Uint8Array) => {
-						this.data$.next(CordovaOBDConnection.unmarshall(data));
-					};
+				this.socket.onData = (data: Uint8Array) => {
+					this.data$.next(CordovaOBDConnection.unmarshall(data));
+				};
 
-					subject.complete()
-				},
-				(error: any) => subject.error(error)
+				subject.complete()
+			},
+			(error: any) => subject.error(error)
 		);
 
 		return subject.asObservable();
@@ -81,8 +81,8 @@ export class CordovaOBDConnection extends OBDConnection {
 		const subject = new Subject();
 
 		this.socket.write(CordovaOBDConnection.marshall(command),
-				() => subject.complete(),
-				(error: any) => subject.error(error)
+			() => subject.complete(),
+			(error: any) => subject.error(error)
 		);
 
 		return subject.asObservable();
@@ -102,8 +102,9 @@ export class CordovaOBDConnection extends OBDConnection {
 	 * The events emitted are ignored, wait for complete (successful) or error (failure).
 	 */
 	close(): Observable<any> {
+		this.data$.complete();
 		this.socket.shutdownWrite();
-		setTimeout(this.socket.close());
+		setTimeout(this.socket.close);
 		return EMPTY;
 	}
 

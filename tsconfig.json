@@ -9,12 +9,12 @@
 		"noImplicitThis": true,
 		"suppressImplicitAnyIndexErrors": true,
 		"moduleResolution": "node",
-		"module": "es2015",
+		"module": "commonjs",
 		"target": "es5",
 		"typeRoots": [
 			"node_modules/@types"
 		],
-		"outDir": "dist",
+		"outDir": "lib",
 		"baseUrl": "src",
 		"lib": [
 			"es5",
@@ -31,5 +31,6 @@
 	"include": [
 		"src/**/*.ts",
 		"node_modules/@types"
-	]
+	],
+	"exclude": ["node_modules"]
 }

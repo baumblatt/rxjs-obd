@@ -13,8 +13,10 @@ export class OBDField {
 	 * @param label The label.
 	 * @param unit The unit.
 	 * @param value The initial value.
+	 * @param formatter projector to format the value.
 	 */
-	constructor(public label: string, public unit: string, public value: string | number) {
-		this.formatted = `${value} ${unit}`;
+	constructor(public label: string, public unit: string, public value: string | number,
+				public formatter?: (unit: string, value: string | number) => string) {
+		this.formatted = formatter ? formatter(unit, value) : `${value} ${unit}`;
 	}
 }

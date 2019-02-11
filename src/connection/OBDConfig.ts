@@ -1,9 +1,11 @@
 import {EMPTY, Observable, of} from 'rxjs';
 import {OBDConnection} from './OBDConnection';
+import {BluetoothSerialDevice} from "../observables";
 
-export interface OBDWifiConfig {
-	host: string;
-	port: number;
+export interface OBDConfig {
+	host?: string;
+	port?: number;
+	device?: BluetoothSerialDevice;
 	pullingInterval: number;
 	connection: OBDConnection;
 }
@@ -30,7 +32,7 @@ export class DummyOBDConnection extends OBDConnection {
 	}
 }
 
-export const defaultOBDWifiConfig: OBDWifiConfig = {
+export const defaultOBDWifiConfig: OBDConfig = {
 	host: '192.168.0.10',
 	port: 35000,
 	pullingInterval: 1000,
