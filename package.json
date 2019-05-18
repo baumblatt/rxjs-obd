@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/baumblatt/rxjs-obd#readme",
   "dependencies": {
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.5.2"
   },
   "devDependencies": {
     "@types/node": "^10.12.18",

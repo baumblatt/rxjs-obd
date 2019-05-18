@@ -1,4 +1,5 @@
-import {OBDConnection} from '../connection/OBDConnection';
+import {Subject} from 'rxjs';
+import {OBDConnection} from '../connection';
 import {OBDData} from './OBDData';
 
 import * as fromFields from './OBDFields';
@@ -9,26 +10,14 @@ import * as fromFields from './OBDFields';
 export class OBDEvent {
 
 	/**
-	 * Event identifier;
-	 */
-	private _id: number;
-
-	/**
-	 * The connection connection to ELM 327 OBD Reader.
-	 */
-	private _connection: OBDConnection;
-
-	/**
 	 * Constructor for OBD Events, only rxjs-obd observables should use it.
 	 *
-	 * @param id The event identifier.
-	 * @param connection The connection to ELM 327 OBD Reader.
-	 * @param _done The done function to be called only by pluckODBData from rxjs-obd.
+	 * @param _id The event identifier.
+	 * @param _connection The connection to ELM 327 OBD Reader.
+	 * @param _subject The subject to be notified only by pluckODBData from rxjs-obd.
 	 * @param _data The previous ODB data (Optional).
 	 */
-	constructor(id: number, connection: OBDConnection, private _done: Function, private _data = new OBDData()) {
-		this._id = id;
-		this._connection = connection;
+	constructor(private _id: number, private _connection: OBDConnection, private _subject: Subject<OBDData>, private _data = new OBDData()) {
 	}
 
 	/**
@@ -46,10 +35,10 @@ export class OBDEvent {
 	}
 
 	/**
-	 * The done function to be called only by pluckODBData from rxjs-obd.
+	 * The subject to be notified only by pluckODBData from rxjs-obd.
 	 */
-	done(data: OBDData) {
-		this._done(data);
+	next(data: OBDData) {
+		this._subject.next(data);
 	}
 
 	/**

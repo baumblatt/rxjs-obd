@@ -21,7 +21,7 @@ class PluckOBDDataSubscriber extends Subscriber<OBDEvent> {
 	}
 
 	protected _next(event: OBDEvent) {
-		event.done(event.data);
+		event.next(event.data);
 		this.destination.next(event.data);
 	}
 }

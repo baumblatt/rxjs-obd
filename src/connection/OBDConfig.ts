@@ -1,6 +1,6 @@
 import {EMPTY, Observable, of} from 'rxjs';
-import {OBDConnection} from './OBDConnection';
 import {BluetoothSerialDevice} from "../observables";
+import {OBDConnection} from './OBDConnection';
 
 export interface OBDConfig {
 	host?: string;
