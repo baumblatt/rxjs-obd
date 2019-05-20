@@ -17,7 +17,8 @@ export {fromBluetoothSerialList, BluetoothSerialDevice} from './observables'
 
 
 // Operators
+export {ethanolLevel} from './operators';
+export {fuelTankLevel} from './operators';
 export {rpm} from './operators';
 export {vehicleSpeed} from './operators';
-export {fuelTankLevel} from './operators';
 export {pluckOBDData} from './operators';
