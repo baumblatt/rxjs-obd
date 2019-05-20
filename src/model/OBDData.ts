@@ -5,6 +5,16 @@ import {OBDField} from './OBDField';
  */
 export class OBDData {
 	/**
+	 * The representation of Fuel Tank Level.
+	 */
+	ethanolLevel?: OBDField;
+
+	/**
+	 * The representation of Fuel Tank Level.
+	 */
+	fuelTankLevel?: OBDField;
+
+	/**
 	 * The representation of RPM.
 	 */
 	rpm?: OBDField;
@@ -13,9 +23,4 @@ export class OBDData {
 	 * The representation of Vehicle Speed.
 	 */
 	vehicleSpeed?: OBDField;
-
-	/**
-	 * The representation of Fuel Tank Level.
-	 */
-	fuelTankLevel?: OBDField;
 }
