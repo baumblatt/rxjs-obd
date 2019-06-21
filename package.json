@@ -1,6 +1,6 @@
 {
   "name": "rxjs-obd",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "RxJS Implementation for OBD (On Board Diagnostics) of vehicles via ELM 327 connections.",
   "repository": {
     "type": "git",
