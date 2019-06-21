@@ -1,7 +1,7 @@
 import {EMPTY, Observable, Subject} from 'rxjs';
-import {OBDConnection} from './OBDConnection';
 import {BluetoothSerialDevice} from "../observables";
 import {FromBluetoothSerial} from "../observables/fromBluetoothSerial";
+import {OBDConnection} from './OBDConnection';
 
 declare var bluetoothSerial: FromBluetoothSerial;
 
@@ -24,22 +24,27 @@ export class BluetoothOBDConnection extends OBDConnection {
 
 		const {device} = config;
 
-		bluetoothSerial.connect(device.id,
-			() => {
-				this.data$ = new Subject<string>();
+		try {
+			bluetoothSerial.connect(device.id,
+				() => {
+					this.data$ = new Subject<string>();
 
-				bluetoothSerial.subscribe('\r>', (data: string) => {
-					this.data$.next(data);
-				}, (error: any) => {
-					this.close();
-					subject.error(error);
-				});
+					bluetoothSerial.subscribe('\r>', (data: string) => {
+						this.data$.next(data);
+					}, (error: any) => {
+						this.close();
+						subject.error(error);
+					});
 
-				subject.complete();
+					subject.complete();
 
-			},
-			(error: any) => subject.error(error)
-		);
+				},
+				(error: any) => subject.error(error)
+			);
+		} catch (e) {
+			subject.error(e)
+		}
+
 
 		return subject.asObservable();
 	}
