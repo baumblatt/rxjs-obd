@@ -1,7 +1,7 @@
+import * as _ from 'lodash';
 import {Subject} from 'rxjs';
 import {OBDConnection} from '../connection';
 import {OBDData} from './OBDData';
-
 import * as fromFields from './OBDFields';
 
 /**
@@ -26,12 +26,12 @@ export class OBDEvent {
 	 * @param value the new value of field.
 	 */
 	update(name: string, value: number | string) {
-		const field = fromFields[name.toUpperCase()];
+		const field = fromFields[_.snakeCase(name).toUpperCase()];
 		const formatted = field.formatter ? field.formatter(field.unit, value) : `${value} ${field.unit}`;
 
-		const {label, unit} = field;
+		const {code, label, unit} = field;
 
-		this._data[name] = {label, unit, value, formatted};
+		this._data[name] = {code, label, unit, value, formatted};
 	}
 
 	/**
