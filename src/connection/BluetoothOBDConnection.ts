@@ -55,7 +55,7 @@ export class BluetoothOBDConnection extends OBDConnection {
 	 * The events emitted are ignored, wait for complete (successful) or error (failure).
 	 */
 	close(): Observable<any> {
-		this.data$.complete();
+		if (this.data$) this.data$.complete();
 		bluetoothSerial.unsubscribe();
 		bluetoothSerial.disconnect();
 		return EMPTY;
