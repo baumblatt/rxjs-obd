@@ -9,12 +9,11 @@ export {OBDConfig, defaultOBDWifiConfig} from './connection';
 // Models
 export {OBDData} from './model';
 export {OBDField} from './model';
-export {FUELTANKLEVEL, RPM, VEHICLESPEED} from './model';
+export {ETHANOL_LEVEL, FUEL_TANK_LEVEL, RPM, VEHICLE_SPEED} from './model';
 
 // Observables
 export {fromOBD} from './observables'
 export {fromBluetoothSerialList, BluetoothSerialDevice} from './observables'
-
 
 // Operators
 export {ethanolLevel} from './operators';
