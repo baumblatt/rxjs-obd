@@ -21,11 +21,19 @@ class RPMSubscriber extends OBDOuterSubscriber {
 	}
 
 	/**
+	 * Return the frequency of execution of this command.
+	 * @return that this command must be executed every pulse.
+	 */
+	pulse(): number {
+		return 1;
+	}
+
+	/**
 	 * Return the string representation of the OBD Read command.
 	 * @returns the string representation of the OBD Read command
 	 */
 	command(): string {
-		return '010C\r';
+		return '01 0C 1\r';
 	}
 
 	/**

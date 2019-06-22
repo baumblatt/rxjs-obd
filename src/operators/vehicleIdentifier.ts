@@ -2,19 +2,19 @@ import {Observable, Operator, Subscriber, TeardownLogic} from 'rxjs';
 import {OBDEvent} from '../model/OBDEvent';
 import {OBDOuterSubscriber} from '../model/OBDOuterSubscriber';
 
-export function vehicleSpeed() {
+export function vehicleIdentifier() {
 	return function (source: Observable<OBDEvent>): Observable<OBDEvent> {
-		return source.lift(new VehicleSpeedOperator());
+		return source.lift(new VehicleIdentifierOperator());
 	}
 }
 
-class VehicleSpeedOperator implements Operator<OBDEvent, OBDEvent> {
+class VehicleIdentifierOperator implements Operator<OBDEvent, OBDEvent> {
 	call(subscriber: Subscriber<OBDEvent>, source: Observable<OBDEvent>): TeardownLogic {
-		return source.subscribe(new VehicleSpeedSubscriber(subscriber));
+		return source.subscribe(new VehicleIdentifierSubscriber(subscriber));
 	}
 }
 
-class VehicleSpeedSubscriber extends OBDOuterSubscriber {
+class VehicleIdentifierSubscriber extends OBDOuterSubscriber {
 
 	constructor(destination: Subscriber<OBDEvent>) {
 		super(destination);
@@ -25,7 +25,7 @@ class VehicleSpeedSubscriber extends OBDOuterSubscriber {
 	 * @return that this command must be executed every pulse.
 	 */
 	pulse(): number {
-		return 1;
+		return 0;
 	}
 
 	/**
@@ -33,7 +33,7 @@ class VehicleSpeedSubscriber extends OBDOuterSubscriber {
 	 * @returns the string representation of the OBD Read command
 	 */
 	command(): string {
-		return '01 0D 1\r';
+		return '09 02\r';
 	}
 
 	/**
@@ -41,7 +41,7 @@ class VehicleSpeedSubscriber extends OBDOuterSubscriber {
 	 * @returns the name of the OBD Field on OBD Data object.
 	 */
 	field(): string {
-		return 'vehicleSpeed';
+		return 'vehicleIdentifier';
 	}
 
 	/**
@@ -50,7 +50,13 @@ class VehicleSpeedSubscriber extends OBDOuterSubscriber {
 	 * @returns the parsed response.
 	 */
 	parse(bytes: string[]): number | string {
-		return parseInt(bytes[2], 16);
+		let result = "";
+
+		for (let byte of bytes) {
+			result += String.fromCharCode(parseInt(byte, 2));
+		}
+
+		return result.replace(/\0/g, '');
 	}
 
 }

@@ -26,6 +26,11 @@ export class OBDData {
 	rpm?: OBDField;
 
 	/**
+	 * The representation of Vehicle Identifier.
+	 */
+	vehicleIdentifier?: OBDField;
+
+	/**
 	 * The representation of Vehicle Speed.
 	 */
 	vehicleSpeed?: OBDField;

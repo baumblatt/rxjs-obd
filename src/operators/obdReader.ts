@@ -2,6 +2,7 @@ import {Observable, Operator, OperatorFunction, Subscriber, TeardownLogic} from 
 
 enum OBD_OUTPUT_MESSAGE_TYPES {
 	MODE_01 = '41',
+	MODE_09 = '49',
 }
 
 const OBD_PROMPT: string = '>';
@@ -26,7 +27,7 @@ class OBDReaderSubscriber extends Subscriber<string> {
 	memento: string[] = [];
 
 	/**
-	 * Interal buffer of the entire output for debug propose.
+	 * Internal buffer of the entire output for debug propose.
 	 */
 	buffer: string = '';
 
@@ -43,7 +44,7 @@ class OBDReaderSubscriber extends Subscriber<string> {
 			if (OBDReaderSubscriber.isOutput(bytes, OBD_OUTPUT_MESSAGE_TYPES.MODE_01)) {
 				this.destination.next(bytes);
 			} else {
-				this.destination.error(`Prompt received without data. Last call ${JSON.stringify(data)} and the entire output was ${JSON.stringify(this.buffer)}`);
+				this.destination.error(`Prompt received without data. Last call ${JSON.stringify(data)} and the entire output was ${this.buffer}`);
 			}
 
 			//clear buffers

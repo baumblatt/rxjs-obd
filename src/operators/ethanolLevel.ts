@@ -21,11 +21,19 @@ class EthanolLevelSubscriber extends OBDOuterSubscriber {
 	}
 
 	/**
+	 * Return the frequency of execution of this command.
+	 * @return that this command must be executed every 5 pulses.
+	 */
+	pulse(): number {
+		return 5;
+	}
+
+	/**
 	 * Return the string representation of the OBD Read command.
 	 * @returns the string representation of the OBD Read command
 	 */
 	command(): string {
-		return '0152\r';
+		return '01 52 1\r';
 	}
 
 	/**

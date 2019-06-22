@@ -1,5 +1,4 @@
 import {from, Subscriber} from 'rxjs';
-import {tap} from "rxjs/internal/operators/tap";
 import {map, mergeMap, take} from 'rxjs/operators';
 import {OuterSubscriber} from '../internal/OuterSubscriber';
 import {obdReader} from '../operators/obdReader';
@@ -12,6 +11,14 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 	protected constructor(destination: Subscriber<OBDEvent>) {
 		super(destination);
 	}
+
+	/**
+	 * Return an integer that represent the frequency of execution of this command.
+	 * 0 - Just once.
+	 * 1 - Every pulse
+	 * n - id % n === 0.
+	 */
+	abstract pulse(): number
 
 	/**
 	 * Return the string representation of the OBD Read command.
@@ -53,7 +60,6 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 	 */
 	read(event: OBDEvent) {
 		event.connection.onData().pipe(
-			tap(data => console.log('data', data)),
 			mergeMap((data: string) => from(data.split(OBD_OUTPUT_DELIMITER))),
 			obdReader(),
 			take(1),
