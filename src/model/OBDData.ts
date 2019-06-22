@@ -11,9 +11,24 @@ export class OBDData {
 	timestamp?: number;
 
 	/**
-	 * The representation of Fuel Tank Level.
+	 * The representation of Calculated Engine Load.
+	 */
+	calculatedEngineLoad?: OBDField;
+
+	/**
+	 * The representation of Engine Coolant Temperature.
+	 */
+	engineCoolantTemperature?: OBDField;
+
+	/**
+	 * The representation of Ethanol Level.
 	 */
 	ethanolLevel?: OBDField;
+
+	/**
+	 * The representation of Fuel Pressure.
+	 */
+	fuelPressure?: OBDField;
 
 	/**
 	 * The representation of Fuel Tank Level.
@@ -21,9 +36,24 @@ export class OBDData {
 	fuelTankLevel?: OBDField;
 
 	/**
+	 * The representation of Fuel System Status.
+	 */
+	fuelSystemStatus?: OBDField;
+
+	/**
+	 * The representation of Intake Manifold Absolute Pressure.
+	 */
+	intakeManifoldAbsolutePressure?: OBDField;
+
+	/**
 	 * The representation of RPM.
 	 */
 	rpm?: OBDField;
+
+	/**
+	 * The representation of Timing Advance.
+	 */
+	timingAdvance?: OBDField;
 
 	/**
 	 * The representation of Vehicle Identifier.

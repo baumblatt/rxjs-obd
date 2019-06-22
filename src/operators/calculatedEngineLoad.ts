@@ -2,19 +2,19 @@ import {Observable, Operator, Subscriber, TeardownLogic} from 'rxjs';
 import {OBDEvent} from '../model/OBDEvent';
 import {OBDOuterSubscriber} from '../model/OBDOuterSubscriber';
 
-export function fuelSystemStatus() {
+export function calculatedEngineLoad() {
 	return function (source: Observable<OBDEvent>): Observable<OBDEvent> {
-		return source.lift(new FuelSystemStatusOperator());
+		return source.lift(new CalculatedEngineLoadOperator());
 	}
 }
 
-class FuelSystemStatusOperator implements Operator<OBDEvent, OBDEvent> {
+class CalculatedEngineLoadOperator implements Operator<OBDEvent, OBDEvent> {
 	call(subscriber: Subscriber<OBDEvent>, source: Observable<OBDEvent>): TeardownLogic {
-		return source.subscribe(new FuelSystemStatusSubscriber(subscriber));
+		return source.subscribe(new CalculatedEngineLoadSubscriber(subscriber));
 	}
 }
 
-class FuelSystemStatusSubscriber extends OBDOuterSubscriber {
+class CalculatedEngineLoadSubscriber extends OBDOuterSubscriber {
 
 	constructor(destination: Subscriber<OBDEvent>) {
 		super(destination);
@@ -33,7 +33,7 @@ class FuelSystemStatusSubscriber extends OBDOuterSubscriber {
 	 * @returns the string representation of the OBD Read command
 	 */
 	command(): string {
-		return '01 03 1\r';
+		return '01 04 1\r';
 	}
 
 	/**
@@ -41,7 +41,7 @@ class FuelSystemStatusSubscriber extends OBDOuterSubscriber {
 	 * @returns the name of the OBD Field on OBD Data object.
 	 */
 	field(): string {
-		return 'fuelSystemStatus';
+		return 'calculatedEngineLoad';
 	}
 
 	/**
@@ -50,7 +50,7 @@ class FuelSystemStatusSubscriber extends OBDOuterSubscriber {
 	 * @returns the parsed response.
 	 */
 	parse(bytes: string[]): number | string {
-		return `${bytes[2]} ${bytes[3]}`;
+		return parseInt(bytes[2], 16) * 100 / 255;
 	}
 
 }
