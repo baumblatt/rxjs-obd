@@ -1,15 +1,15 @@
 import {from, Subscriber} from 'rxjs';
+import {tap} from "rxjs/internal/operators/tap";
 import {map, mergeMap, take} from 'rxjs/operators';
 import {OuterSubscriber} from '../internal/OuterSubscriber';
 import {obdReader} from '../operators/obdReader';
 import {OBDEvent} from './OBDEvent';
-import {tap} from "rxjs/internal/operators/tap";
 
 const OBD_OUTPUT_DELIMITER = '\r';
 
 export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEvent> {
 
-	constructor(destination: Subscriber<OBDEvent>) {
+	protected constructor(destination: Subscriber<OBDEvent>) {
 		super(destination);
 	}
 

@@ -29,10 +29,9 @@ export class OBDEvent {
 		const field = fromFields[_.snakeCase(name).toUpperCase()];
 		const formatted = field.formatter ? field.formatter(field.unit, value) : `${value} ${field.unit}`;
 
-		const timestamp = new Date().getTime();
 		const {code, label, unit} = field;
 
-		this._data[name] = {timestamp, code, label, unit, value, formatted};
+		this._data[name] = {code, label, unit, value, formatted};
 	}
 
 	/**
