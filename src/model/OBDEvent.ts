@@ -18,6 +18,7 @@ export class OBDEvent {
 	 * @param _data The previous ODB data (Optional).
 	 */
 	constructor(private _id: number, private _connection: OBDConnection, private _subject: Subject<OBDData>, private _data = new OBDData()) {
+		this._data.timestamp = new Date().getTime();
 	}
 
 	/**

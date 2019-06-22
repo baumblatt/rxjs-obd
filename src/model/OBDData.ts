@@ -6,11 +6,9 @@ import {OBDField} from './OBDField';
 export class OBDData {
 
 	/**
-	 * Constructor of OBD data.
-	 * @param timestamp The timestamp of data.
+	 * The timestamp of the start of each event (before first field read).
 	 */
-	constructor(public timestamp: number = new Date().getTime()) {
-	}
+	timestamp?: number;
 
 	/**
 	 * The representation of Fuel Tank Level.
