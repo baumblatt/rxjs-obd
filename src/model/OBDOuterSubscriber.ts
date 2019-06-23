@@ -4,6 +4,7 @@ import {OuterSubscriber} from '../internal/OuterSubscriber';
 import {obdReader} from '../operators/obdReader';
 import {OBDEvent} from './OBDEvent';
 
+const OBD_NO_DATA: string = 'NO DATA';
 const OBD_OUTPUT_DELIMITER = '\r';
 
 export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEvent> {
@@ -63,10 +64,14 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 			mergeMap((data: string) => from(data.split(OBD_OUTPUT_DELIMITER))),
 			obdReader(),
 			take(1),
-			map((result: string[]) => this.parse(result)),
+			map((result: string[]) => {
+				return OBD_NO_DATA !== result[0] ? this.parse(result) : OBD_NO_DATA;
+			}),
 		).subscribe(
 			(value: number | string) => {
-				event.update(this.field(), value);
+				if (OBD_NO_DATA !== value) {
+					event.update(this.field(), value);
+				}
 				this.destination.next(event);
 			},
 			(error: any) => this.destination.error(error)

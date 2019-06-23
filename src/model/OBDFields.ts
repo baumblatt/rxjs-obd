@@ -12,7 +12,9 @@ export const INTAKE_MANIFOLD_ABSOLUTE_PRESSURE = new OBDField('010B', 'Intake Ma
 export const TIMING_ADVANCE = new OBDField('010E', 'Timing Advance', '° before TDC', 0, rowData);
 export const RPM = new OBDField('010C', 'Engine RPM', 'rpm', 0, integer);
 export const VEHICLE_SPEED = new OBDField('010D', 'Vehicle Speed', 'km/h', 0);
+export const THROTTLE_POSITION = new OBDField('0111', 'Throttle Position', '%', 0, integer);
 export const FUEL_TANK_LEVEL = new OBDField('012F', 'Fuel Tank Level', '%', 0, integer);
 export const ETHANOL_LEVEL = new OBDField('0152', 'Ethanol Level', '%', 0, integer);
+export const ENGINE_FUEL_RATE = new OBDField('015E', 'Engine Fuel Rate', 'L/h', 0);
 
-export const VEHICLE_IDENTIFIER = new OBDField('0902', 'Vehicle Identifier', '', '');
+export const VEHICLE_IDENTIFIER = new OBDField('0902', 'Vehicle Identifier', '', '', rowData);

@@ -2,9 +2,10 @@ import {Observable, Operator, OperatorFunction, Subscriber, TeardownLogic} from 
 
 enum OBD_OUTPUT_MESSAGE_TYPES {
 	MODE_01 = '41',
-	MODE_09 = '49',
+	MODE_09 = '09',
 }
 
+const OBD_NO_DATA: string = 'NO DATA';
 const OBD_PROMPT: string = '>';
 
 export function obdReader(): OperatorFunction<string, string[]> {
@@ -40,9 +41,15 @@ class OBDReaderSubscriber extends Subscriber<string> {
 
 		if (OBDReaderSubscriber.hasPrompt(data)) {
 			const bytes = this.memento;
+			console.log('Row Data: ', data);
+			console.log('Buffer: ', this.buffer);
 
 			if (OBDReaderSubscriber.isOutput(bytes, OBD_OUTPUT_MESSAGE_TYPES.MODE_01)) {
 				this.destination.next(bytes);
+			} else if (bytes && bytes.length && bytes[0] === OBD_NO_DATA) {
+				this.destination.next(bytes);
+			} else if (this.buffer.indexOf(OBD_OUTPUT_MESSAGE_TYPES.MODE_09) === 0) {
+				this.destination.next([this.buffer]);
 			} else {
 				this.destination.error(`Prompt received without data. Last call ${JSON.stringify(data)} and the entire output was ${this.buffer}`);
 			}
@@ -51,10 +58,14 @@ class OBDReaderSubscriber extends Subscriber<string> {
 			this.memento = [];
 			this.buffer = '';
 		} else if (data) {
-			const bytes = OBDReaderSubscriber.getByteGroupings(data);
+			if (OBD_NO_DATA === data) {
+				this.memento = [data];
+			} else {
+				const bytes = OBDReaderSubscriber.getByteGroupings(data);
 
-			if (OBDReaderSubscriber.isOutput(bytes, OBD_OUTPUT_MESSAGE_TYPES.MODE_01)) {
-				this.memento = bytes;
+				if (OBDReaderSubscriber.isOutput(bytes, OBD_OUTPUT_MESSAGE_TYPES.MODE_01)) {
+					this.memento = bytes;
+				}
 			}
 		}
 	}

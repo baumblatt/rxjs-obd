@@ -21,6 +21,11 @@ export class OBDData {
 	engineCoolantTemperature?: OBDField;
 
 	/**
+	 * The representation of Engine Fuel Rate.
+	 */
+	engineFuelRate?: OBDField;
+
+	/**
 	 * The representation of Ethanol Level.
 	 */
 	ethanolLevel?: OBDField;
@@ -54,6 +59,11 @@ export class OBDData {
 	 * The representation of Timing Advance.
 	 */
 	timingAdvance?: OBDField;
+
+	/**
+	 * The representation of Throttle Position.
+	 */
+	throttlePosition?: OBDField;
 
 	/**
 	 * The representation of Vehicle Identifier.
