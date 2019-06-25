@@ -5,10 +5,6 @@ import {OBDField} from './OBDField';
  */
 export class OBDData {
 
-	constructor() {
-		this.supportedPIDs = {};
-	}
-
 	/**
 	 * The timestamp of the start of each event (before first field read).
 	 */
@@ -25,7 +21,7 @@ export class OBDData {
 		segment60?: number;
 		segment80?: number;
 		segmentA0?: number;
-	};
+	} = {};
 
 	/**
 	 * The representation of Calculated Engine Load.

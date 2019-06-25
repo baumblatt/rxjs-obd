@@ -22,6 +22,16 @@ export class OBDEvent {
 	}
 
 	/**
+	 * Update the supported PIDs.
+	 *
+	 * @param segment The segment.
+	 * @param value The value.
+	 */
+	supportedPIDs(segment: string, value: number) {
+		this._data.supportedPIDs[segment] = value;
+	}
+
+	/**
 	 * Update a field of the public OBD Data.
 	 * @param name The field name.
 	 * @param value the new value of field.

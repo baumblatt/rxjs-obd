@@ -71,7 +71,7 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 			(value: number | string) => {
 				const segment = this.field().match(/supportedPIDs\.(segment[0-9A-F][0-9A-F])/);
 				if (segment) {
-					event.data.supportedPIDs[segment[1]] = value;
+					event.supportedPIDs(segment[1], <number>value);
 				} else if (OBD_NO_DATA !== value) {
 					event.update(this.field(), value);
 				}
