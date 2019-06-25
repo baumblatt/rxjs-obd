@@ -14,7 +14,7 @@ export const fromOBD = (config = defaultOBDWifiConfig) => new Observable<OBDEven
 	/**
 	 * Last OBD Data emitted.
 	 */
-	let data: OBDData;
+	let data: OBDData = new OBDData();
 
 	/**
 	 * Flag of indicate that a pull loop is running.
