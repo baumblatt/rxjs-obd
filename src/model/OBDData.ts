@@ -5,6 +5,10 @@ import {OBDField} from './OBDField';
  */
 export class OBDData {
 
+	constructor() {
+		this.supportedPIDs = {};
+	}
+
 	/**
 	 * The timestamp of the start of each event (before first field read).
 	 */
@@ -15,12 +19,12 @@ export class OBDData {
 	 * @see https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01_PID_1C
 	 */
 	supportedPIDs: {
-		segment00: number;
-		segment20: number;
-		segment40: number;
-		segment60: number;
-		segment80: number;
-		segmentA0: number;
+		segment00?: number;
+		segment20?: number;
+		segment40?: number;
+		segment60?: number;
+		segment80?: number;
+		segmentA0?: number;
 	};
 
 	/**
