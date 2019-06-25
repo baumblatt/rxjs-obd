@@ -14,14 +14,14 @@ export class OBDData {
 	 * The set of bit encoded flags of supported PIDs in decimal form.
 	 * @see https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01_PID_1C
 	 */
-	supportedPIDs: {
-		segment00?: number;
-		segment20?: number;
-		segment40?: number;
-		segment60?: number;
-		segment80?: number;
-		segmentA0?: number;
-	} = {};
+	supportedPIDs = {
+		segment00: 0,
+		segment20: 0,
+		segment40: 0,
+		segment60: 0,
+		segment80: 0,
+		segmentA0: 0,
+	};
 
 	/**
 	 * The representation of Calculated Engine Load.

@@ -28,7 +28,7 @@ export class OBDEvent {
 	 * @param value The value.
 	 */
 	supportedPIDs(segment: string, value: number) {
-		this._data.supportedPIDs[segment] = value;
+		this._data.supportedPIDs = {...this._data.supportedPIDs, [segment]: value};
 	}
 
 	/**
