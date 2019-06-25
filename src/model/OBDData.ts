@@ -46,14 +46,44 @@ export class OBDData {
 	fuelSystemStatus?: OBDField;
 
 	/**
+	 * The representation of Intake Air Temperature.
+	 */
+	intakeAirTemperature?: OBDField;
+
+	/**
 	 * The representation of Intake Manifold Absolute Pressure.
 	 */
 	intakeManifoldAbsolutePressure?: OBDField;
 
 	/**
+	 * The representation of Long Term Fuel Trim B1.
+	 */
+	longTermFuelTrimB1?: OBDField;
+
+	/**
+	 * The representation of Long Term Fuel Trim B2.
+	 */
+	longTermFuelTrimB2?: OBDField;
+
+	/**
+	 * The representation of Mass Flow Sensor.
+	 */
+	massFlowSensor?: OBDField;
+
+	/**
 	 * The representation of RPM.
 	 */
 	rpm?: OBDField;
+
+	/**
+	 * The representation of Short Term Fuel Trim B1.
+	 */
+	shortTermFuelTrimB1?: OBDField;
+
+	/**
+	 * The representation of Short Term Fuel Trim B2.
+	 */
+	shortTermFuelTrimB2?: OBDField;
 
 	/**
 	 * The representation of Timing Advance.
