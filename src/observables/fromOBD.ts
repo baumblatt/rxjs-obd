@@ -1,5 +1,6 @@
 import {interval, Observable, Subject, Subscriber, Subscription} from 'rxjs';
 import {defaultOBDWifiConfig} from '../connection';
+import {supportedPIDs} from '../internal/operators/supportedPIDs';
 import {OBDData} from '../model';
 import {OBDEvent} from '../model/OBDEvent';
 
@@ -63,4 +64,9 @@ export const fromOBD = (config = defaultOBDWifiConfig) => new Observable<OBDEven
 		}
 	};
 
-});
+}).pipe(
+	supportedPIDs('00'),
+	supportedPIDs('20'),
+	supportedPIDs('40'),
+	supportedPIDs('60'),
+);

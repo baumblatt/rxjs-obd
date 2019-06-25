@@ -2,19 +2,19 @@ import {Observable, Operator, Subscriber, TeardownLogic} from 'rxjs';
 import {OBDEvent} from '../model/OBDEvent';
 import {OBDOuterSubscriber} from '../model/OBDOuterSubscriber';
 
-export function longTermFuelTrimB2() {
+export function distanceTraveledMil() {
 	return function (source: Observable<OBDEvent>): Observable<OBDEvent> {
-		return source.lift(new LongTermFuelTrimB2Operator());
+		return source.lift(new DistanceTraveledMILOperator());
 	}
 }
 
-class LongTermFuelTrimB2Operator implements Operator<OBDEvent, OBDEvent> {
+class DistanceTraveledMILOperator implements Operator<OBDEvent, OBDEvent> {
 	call(subscriber: Subscriber<OBDEvent>, source: Observable<OBDEvent>): TeardownLogic {
-		return source.subscribe(new LongTermFuelTrimB2Subscriber(subscriber));
+		return source.subscribe(new DistanceTraveledMILSubscriber(subscriber));
 	}
 }
 
-class LongTermFuelTrimB2Subscriber extends OBDOuterSubscriber {
+class DistanceTraveledMILSubscriber extends OBDOuterSubscriber {
 
 	constructor(destination: Subscriber<OBDEvent>) {
 		super(destination);
@@ -33,7 +33,7 @@ class LongTermFuelTrimB2Subscriber extends OBDOuterSubscriber {
 	 * @returns the string representation of the OBD Read command
 	 */
 	command(): string {
-		return '01 09 1\r';
+		return '01 21 1\r';
 	}
 
 	/**
@@ -41,7 +41,7 @@ class LongTermFuelTrimB2Subscriber extends OBDOuterSubscriber {
 	 * @returns the name of the OBD Field on OBD Data object.
 	 */
 	field(): string {
-		return 'longTermFuelTrimB2';
+		return 'distanceTraveledMil';
 	}
 
 	/**
@@ -50,7 +50,7 @@ class LongTermFuelTrimB2Subscriber extends OBDOuterSubscriber {
 	 * @returns the parsed response.
 	 */
 	parse(bytes: string[]): number | string {
-		return (parseInt(bytes[2], 16) / 1.28) - 100;
+		return (parseInt(bytes[2], 16) * 256) + parseInt(bytes[3], 16);
 	}
 
 }

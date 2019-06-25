@@ -41,8 +41,6 @@ class OBDReaderSubscriber extends Subscriber<string> {
 
 		if (OBDReaderSubscriber.hasPrompt(data)) {
 			const bytes = this.memento;
-			console.log('Row Data: ', data);
-			console.log('Buffer: ', this.buffer);
 
 			if (OBDReaderSubscriber.isOutput(bytes, OBD_OUTPUT_MESSAGE_TYPES.MODE_01)) {
 				this.destination.next(bytes);
@@ -98,6 +96,6 @@ class OBDReaderSubscriber extends Subscriber<string> {
 	 */
 	static getByteGroupings(str: string): Array<string> | null {
 		// Remove white space (if any exists) and get byte groups as pairs
-		return str.replace(/\ /g, '').match(/.{1,2}/g);
+		return str.replace(/ /g, '').match(/.{1,2}/g);
 	}
 }

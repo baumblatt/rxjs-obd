@@ -2,7 +2,7 @@ import {Observable, Operator, Subscriber, TeardownLogic} from 'rxjs';
 import {OBDEvent} from '../model/OBDEvent';
 import {OBDOuterSubscriber} from '../model/OBDOuterSubscriber';
 
-export function shortTermFuelTrimB1() {
+export function longTermFuelTrimB1() {
 	return function (source: Observable<OBDEvent>): Observable<OBDEvent> {
 		return source.lift(new LongTermFuelTrimB1Operator());
 	}

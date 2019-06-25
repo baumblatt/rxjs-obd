@@ -1,22 +1,25 @@
 import {Observable, Operator, Subscriber, TeardownLogic} from 'rxjs';
-import {OBDEvent} from '../model/OBDEvent';
-import {OBDOuterSubscriber} from '../model/OBDOuterSubscriber';
+import {OBDEvent} from '../../model/OBDEvent';
+import {OBDOuterSubscriber} from '../../model/OBDOuterSubscriber';
 
-export function longTermFuelTrimB2() {
+export function supportedPIDs(pid: string = '00') {
 	return function (source: Observable<OBDEvent>): Observable<OBDEvent> {
-		return source.lift(new LongTermFuelTrimB2Operator());
+		return source.lift(new SupportedPIDsOperator(pid));
 	}
 }
 
-class LongTermFuelTrimB2Operator implements Operator<OBDEvent, OBDEvent> {
+class SupportedPIDsOperator implements Operator<OBDEvent, OBDEvent> {
+	constructor(private pid: string) {
+	}
+
 	call(subscriber: Subscriber<OBDEvent>, source: Observable<OBDEvent>): TeardownLogic {
-		return source.subscribe(new LongTermFuelTrimB2Subscriber(subscriber));
+		return source.subscribe(new SupportedPIDsSubscriber(subscriber, this.pid));
 	}
 }
 
-class LongTermFuelTrimB2Subscriber extends OBDOuterSubscriber {
+class SupportedPIDsSubscriber extends OBDOuterSubscriber {
 
-	constructor(destination: Subscriber<OBDEvent>) {
+	constructor(destination: Subscriber<OBDEvent>, private pid: string) {
 		super(destination);
 	}
 
@@ -33,7 +36,7 @@ class LongTermFuelTrimB2Subscriber extends OBDOuterSubscriber {
 	 * @returns the string representation of the OBD Read command
 	 */
 	command(): string {
-		return '01 09 1\r';
+		return `01 ${this.pid} 1\r`;
 	}
 
 	/**
@@ -41,7 +44,7 @@ class LongTermFuelTrimB2Subscriber extends OBDOuterSubscriber {
 	 * @returns the name of the OBD Field on OBD Data object.
 	 */
 	field(): string {
-		return 'longTermFuelTrimB2';
+		return `supportedPIDs.segment${this.pid}`;
 	}
 
 	/**
@@ -50,7 +53,7 @@ class LongTermFuelTrimB2Subscriber extends OBDOuterSubscriber {
 	 * @returns the parsed response.
 	 */
 	parse(bytes: string[]): number | string {
-		return (parseInt(bytes[2], 16) / 1.28) - 100;
+		return parseInt(bytes[2], 16) + (parseInt(bytes[3], 16) * 256) + (parseInt(bytes[3], 16) * 65536) + (parseInt(bytes[3], 16) * 16777216);
 	}
 
 }

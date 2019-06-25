@@ -11,9 +11,32 @@ export class OBDData {
 	timestamp?: number;
 
 	/**
+	 * The set of bit encoded flags of supported PIDs in decimal form.
+	 * @see https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01_PID_1C
+	 */
+	supportedPIDs: {
+		segment00: number;
+		segment20: number;
+		segment40: number;
+		segment60: number;
+		segment80: number;
+		segmentA0: number;
+	};
+
+	/**
 	 * The representation of Calculated Engine Load.
 	 */
 	calculatedEngineLoad?: OBDField;
+
+	/**
+	 * The representation of Commanded Secondary Air Status.
+	 */
+	commandedSecondaryAirStatus?: OBDField;
+
+	/**
+	 * The representation of Distance Traveled with malfunction indicator lamp (MIL) on.
+	 */
+	distanceTraveledMIL?: OBDField;
 
 	/**
 	 * The representation of Engine Coolant Temperature.
