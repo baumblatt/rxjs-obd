@@ -69,4 +69,6 @@ export const fromOBD = (config = defaultOBDWifiConfig) => new Observable<OBDEven
 	supportedPIDs('20'),
 	supportedPIDs('40'),
 	supportedPIDs('60'),
+	supportedPIDs('80'),
+	supportedPIDs('A0'),
 );

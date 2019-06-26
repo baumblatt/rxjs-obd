@@ -1,6 +1,7 @@
 import {from, Subscriber} from 'rxjs';
 import {map, mergeMap, take} from 'rxjs/operators';
 import {OuterSubscriber} from '../internal/OuterSubscriber';
+import {isSupportedPID} from '../internal/utils';
 import {obdReader} from '../operators/obdReader';
 import {OBDEvent} from './OBDEvent';
 
@@ -49,10 +50,16 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 	protected _next(event: OBDEvent) {
 		const self = this;
 
-		event.connection.send(this.command()).subscribe({
-			error: (error: any) => self.destination.error(error),
-			complete: () => self.read(event)
-		});
+		const service01 = this.command().match(/(\d\d) ([0-9A-F][0-9A-F]) 1\r/);
+
+		if (!service01 || isSupportedPID(event.data, service01[2])) {
+			event.connection.send(this.command()).subscribe({
+				error: (error: any) => self.destination.error(error),
+				complete: () => self.read(event)
+			});
+		} else {
+			this.destination.next(event);
+		}
 	}
 
 	/**
