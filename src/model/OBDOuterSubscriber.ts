@@ -1,4 +1,4 @@
-import {from, Subscriber} from 'rxjs';
+import {from, Subscriber, zip} from 'rxjs';
 import {map, mergeMap, take} from 'rxjs/operators';
 import {OuterSubscriber} from '../internal/OuterSubscriber';
 import {isSupportedPID} from '../internal/utils';
@@ -34,14 +34,14 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 	 * For example use 'rpm' for Engine RPM.
 	 * @returns the name of the OBD Field on OBD Data object.
 	 */
-	abstract field(): string;
+	abstract field(): string | string[];
 
 	/**
 	 * Parse the OBD response.
 	 * @param bytes the response read from OBD.
 	 * @returns the parsed response.
 	 */
-	abstract parse(bytes: string[]): number | string;
+	abstract parse(bytes: string[]): number | string | (number | string)[];
 
 	/**
 	 * Send the command to OBD Reader and try to read the response.
@@ -75,14 +75,22 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 				return OBD_NO_DATA !== result[0] ? this.parse(result) : OBD_NO_DATA;
 			}),
 		).subscribe(
-			(value: number | string) => {
-				const segment = this.field().match(/supportedPIDs\.(segment[0-9A-F][0-9A-F])/);
-				if (segment) {
-					event.supportedPIDs(segment[1], <number>value);
-				} else if (OBD_NO_DATA !== value) {
-					event.update(this.field(), value);
+			(value: number | string | (number | string)[]) => {
+				if (Array.isArray(this.field())) {
+					const values = <(number | string)[]>value;
+					zip(from(this.field()), from(<(number | string)[]>value)).subscribe(
+						([field, _value]) => event.update(field, _value)
+					)
+				} else {
+					const segment = (<string>this.field()).match(/supportedPIDs\.(segment[0-9A-F][0-9A-F])/);
+					if (segment) {
+						event.supportedPIDs(segment[1], <number>value);
+					} else if (OBD_NO_DATA !== value) {
+						event.update(<string>this.field(), <number | string>value);
+					}
+					this.destination.next(event);
 				}
-				this.destination.next(event);
+
 			},
 			(error: any) => this.destination.error(error)
 		);

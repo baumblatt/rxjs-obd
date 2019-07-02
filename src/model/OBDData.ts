@@ -94,6 +94,86 @@ export class OBDData {
 	massFlowSensor?: OBDField;
 
 	/**
+	 * The representation of Oxygen Sensor Voltage 1.
+	 */
+	oxygenSensorVoltage1?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Voltage 2.
+	 */
+	oxygenSensorVoltage2?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Voltage 3.
+	 */
+	oxygenSensorVoltage3?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Voltage 4.
+	 */
+	oxygenSensorVoltage4?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Voltage 5.
+	 */
+	oxygenSensorVoltage5?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Voltage 6.
+	 */
+	oxygenSensorVoltage6?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Voltage 7.
+	 */
+	oxygenSensorVoltage7?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Voltage 8.
+	 */
+	oxygenSensorVoltage8?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Short Term Fuel Trim 1.
+	 */
+	oxygenSensorShortTermFuelTrim1?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Short Term Fuel Trim 2.
+	 */
+	oxygenSensorShortTermFuelTrim2?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Short Term Fuel Trim 3.
+	 */
+	oxygenSensorShortTermFuelTrim3?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Short Term Fuel Trim 4.
+	 */
+	oxygenSensorShortTermFuelTrim4?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Short Term Fuel Trim 5.
+	 */
+	oxygenSensorShortTermFuelTrim5?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Short Term Fuel Trim 6.
+	 */
+	oxygenSensorShortTermFuelTrim6?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Short Term Fuel Trim 7.
+	 */
+	oxygenSensorShortTermFuelTrim7?: OBDField;
+
+	/**
+	 * The representation of Oxygen Sensor Short Term Fuel Trim 8.
+	 */
+	oxygenSensorShortTermFuelTrim8?: OBDField;
+
+	/**
 	 * The representation of RPM.
 	 */
 	rpm?: OBDField;
