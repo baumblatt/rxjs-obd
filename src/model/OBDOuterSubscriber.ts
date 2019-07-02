@@ -80,7 +80,7 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 					const values = <(number | string)[]>value;
 					zip(from(this.field()), from(<(number | string)[]>value)).subscribe(
 						([field, _value]) => event.update(field, _value)
-					)
+					);
 				} else {
 					const segment = (<string>this.field()).match(/supportedPIDs\.(segment[0-9A-F][0-9A-F])/);
 					if (segment) {
@@ -88,9 +88,9 @@ export abstract class OBDOuterSubscriber extends OuterSubscriber<OBDEvent, OBDEv
 					} else if (OBD_NO_DATA !== value) {
 						event.update(<string>this.field(), <number | string>value);
 					}
-					this.destination.next(event);
 				}
 
+				this.destination.next(event);
 			},
 			(error: any) => this.destination.error(error)
 		);
