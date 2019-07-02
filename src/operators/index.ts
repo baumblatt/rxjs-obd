@@ -12,6 +12,7 @@ export {intakeManifoldAbsolutePressure} from './intakeManifoldAbsolutePressure';
 export {longTermFuelTrimB1} from './longTermFuelTrimB1';
 export {longTermFuelTrimB2} from './longTermFuelTrimB2';
 export {massFlowSensor} from './massFlowSensor';
+export {oxygenSensorSTFT} from './oxygenSensorSTFT';
 export {rpm} from './rpm';
 export {shortTermFuelTrimB1} from './shortTermFuelTrimB1';
 export {shortTermFuelTrimB2} from './shortTermFuelTrimB2';
