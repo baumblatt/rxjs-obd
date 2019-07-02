@@ -21,10 +21,10 @@ const commandedSecondaryAirStatus = (value: string | number) => {
 export const FUEL_SYSTEM_STATUS = new OBDField('0103', 'Fuel System Status', '', '', rowData);
 export const CALCULATED_ENGINE_LOAD = new OBDField('0104', 'Calculated Engine Load', '%', 0, integer);
 export const ENGINE_COOLANT_TEMPERATURE = new OBDField('0105', 'Engine Coolant Temperature', '°C', 0, integer);
-export const SHORT_TERM_FUEL_TRIM_B1 = new OBDField('0106', 'Short Term Fuel Trim B1', '%', 0, integer);
-export const LONG_TERM_FUEL_TRIM_B1 = new OBDField('0107', 'Long Term Fuel Trim B1', '%', 0, integer);
-export const SHORT_TERM_FUEL_TRIM_B2 = new OBDField('0108', 'Short Term Fuel Trim B2', '%', 0, integer);
-export const LONG_TERM_FUEL_TRIM_B2 = new OBDField('0109', 'Long Term Fuel Trim B2', '%', 0, integer);
+export const SHORT_TERM_FUEL_TRIM_B_1 = new OBDField('0106', 'Short Term Fuel Trim B1', '%', 0, integer);
+export const LONG_TERM_FUEL_TRIM_B_1 = new OBDField('0107', 'Long Term Fuel Trim B1', '%', 0, integer);
+export const SHORT_TERM_FUEL_TRIM_B_2 = new OBDField('0108', 'Short Term Fuel Trim B2', '%', 0, integer);
+export const LONG_TERM_FUEL_TRIM_B_2 = new OBDField('0109', 'Long Term Fuel Trim B2', '%', 0, integer);
 export const RPM = new OBDField('010C', 'Engine RPM', 'rpm', 0, integer);
 export const VEHICLE_SPEED = new OBDField('010D', 'Vehicle Speed', 'km/h', 0);
 export const MASS_FLOW_SENSOR = new OBDField('0110', 'Mass Flow Sensor', 'grams/sec', 0);
